@@ -1,3 +1,2 @@
-WindsurfUserSetup-x64-1.9544.35.exe filter=lfs diff=lfs merge=lfs -text
-VSCodeUserSetup-x64-1.109.3.exe filter=lfs diff=lfs merge=lfs -text
-VSCodeUserSetup-x64-1.110.0-insider.exe filter=lfs diff=lfs merge=lfs -text
+VSCodeUserSetup-x64-*.exe filter=lfs diff=lfs merge=lfs -text
+WindsurfUserSetup-x64-*.exe filter=lfs diff=lfs merge=lfs -text

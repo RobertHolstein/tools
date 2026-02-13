@@ -1,0 +1,33 @@
+name: Update Installers
+
+on:
+  schedule:
+    - cron: '0 8 * * *'  # Runs daily at 8:00 AM UTC
+  workflow_dispatch:      # Allows manual triggering
+
+jobs:
+  update-installers:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y git-lfs
+
+      - name: Run update script
+        run: |
+          chmod +x scripts/update_installers.sh
+          ./scripts/update_installers.sh
+
+      - name: Commit and Push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update VS Code installers"
+          branch: main
+          file_pattern: 'VSCodeUserSetup*.exe'
